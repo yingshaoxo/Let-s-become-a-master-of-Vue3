@@ -1,19 +1,51 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-</template>
-
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineComponent, reactive } from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
+
+import { theGlobalReactiveObject } from "./functions";
+import { theGlobalReactiveObject as theGlobalReactiveObject2 } from "./functions";
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+  },
+  setup(props, context) {
+    const dict = reactive({
+      data: {
+        theMessage: "hi, there",
+      },
+      functions: {},
+    });
+
+    return {
+      dict,
+      theGlobalReactiveObject,
+      theGlobalReactiveObject2,
+    };
+  },
 });
 </script>
+
+
+<template>
+  <button
+    @click="
+      () => {
+        theGlobalReactiveObject2.functions.changeTheMood(
+          'very very happy because Im doing something fun'
+        );
+      }
+    "
+  >
+    change mood from another importing
+  </button>
+  <HelloWorld
+    v-model:message="dict.data.theMessage"
+    :theGlobalReactiveObject="theGlobalReactiveObject"
+  />
+</template>
+
 
 <style lang="scss">
 #app {

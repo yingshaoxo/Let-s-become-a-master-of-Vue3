@@ -38,6 +38,7 @@ export default defineComponent({
 
     return {
       dict,
+      functions,
     };
   },
 });
@@ -64,6 +65,17 @@ export default defineComponent({
       "
     >
       sad
+    </button>
+    <button
+      @click="
+        () => {
+          functions.theGlobalReactiveObject.functions.changeTheMood(
+            'high high high'
+          );
+        }
+      "
+    >
+      turnItUp
     </button>
 
     <br />

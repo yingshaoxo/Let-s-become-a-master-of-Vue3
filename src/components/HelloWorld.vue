@@ -1,5 +1,13 @@
 <script lang="ts">
-import { defineComponent, reactive, watch, unref, computed } from "vue";
+import {
+  defineComponent,
+  reactive,
+  watch,
+  unref,
+  computed,
+  ref,
+  toRefs,
+} from "vue";
 
 import * as functions from "../functions";
 
@@ -30,11 +38,38 @@ export default defineComponent({
       },
     });
 
-    // watch(dict.data, (_newValue, _oldValue) => {
-    //   console.log(_newValue)
-    // }, {
-    //   deep: true
-    // })
+    // const propsRef = toRefs(props);
+    // watch(
+    //   propsRef.message,
+    //   (_newValue, _oldValue) => {
+    //     // console.log(_newValue.tempMessage, _oldValue.tempMessage);
+    //     console.log(_newValue, _oldValue);
+    //   },
+    //   {
+    //     deep: true,
+    //   }
+    // );
+
+    // const propsRef = toRefs(dict.data);
+    // watch(
+    //   propsRef.tempMessage,
+    //   (_newValue, _oldValue) => {
+    //     console.log(_newValue, _oldValue);
+    //   },
+    //   {
+    //     deep: true,
+    //   }
+    // );
+
+    watch(
+      () => props.message,
+      (_newValue, _oldValue) => {
+        console.log(_newValue, _oldValue);
+      },
+      {
+        deep: true,
+      }
+    );
 
     return {
       dict,

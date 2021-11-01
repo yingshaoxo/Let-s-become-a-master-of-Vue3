@@ -14,3 +14,7 @@ export const theGlobalReactiveObject = reactive({
         },
     },
 })
+
+export const unreactive = (obj: any) => {
+    return JSON.parse(JSON.stringify(obj))
+}
